@@ -21,13 +21,10 @@ grad = zeros(size(theta));
 
 %cost-----------------------------------------------------------
 
-tmp = 0;
-[m, n] = size(X);
-for i = 2 : n
-	tmp = tmp + (theta(i)) ^ 2;
-end
-
-J = 1 / 2 / m * sum((X * theta - y) .^ 2) + lambda / 2 / m * tmp;
+J = 1 / 2 / m * sum((X * theta - y) .^ 2);
+tmp1 = theta .^ 2;
+tmp1(1) = 0;
+J = J + lambda / 2 / m * sum(tmp1);
 
 %gradient-------------------------------------------------------
 grad = 1 / m * X' * (X * theta - y);
