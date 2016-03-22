@@ -23,8 +23,20 @@ idx = zeros(size(X,1), 1);
 
 
 
-
-
+for i = 1 : size(X, 1)
+	d = 1000.00;
+	for j = 1 : K
+		tmp = 0;
+		for k = 1 : size(X, 2)
+			tmp = tmp + (X(i, k) - centroids(j, k)) ^ 2 ;
+		end
+		
+		if(tmp < d)
+			d = tmp;
+			idx(i) = j;
+		end			
+	end
+end
 
 
 % =============================================================
